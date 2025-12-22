@@ -1,0 +1,11 @@
+{
+  "vpns": [
+    {
+      "name": "vpn_${platform}",
+      "server": "${vpn_server}",
+      "user": "${vpn_user}",
+      "pass": "${vpn_pass}",
+      "ec_ver": "${vpn_ec_ver}"
+    }
+  ]
+}

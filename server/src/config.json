@@ -1,0 +1,18 @@
+{
+  "vpns": [
+    {
+      "name": "vpn_xinhee",
+      "server": "sslvpn.xinhee.cn:431",
+      "user": "xhlingmao",
+      "pass": "yHFGPCsiurCBPTmJ6Av",
+      "ec_ver": "7.6.7"
+    },
+    {
+      "name": "vpn_shanshan",
+      "server": "vpn.nbshanshan.com:4430",
+      "user": "SCM",
+      "pass": "SCM&FIRS123",
+      "ec_ver": "7.6.7"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules/
+
+configs/kubeconfig/*
+!configs/kubeconfig/project.env.yml
+
+configs/config.json
+
+kubectl
+
+docker-cli/
+docker-compose/docker-compose.yml
