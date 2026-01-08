@@ -2,6 +2,17 @@
 ### 添加kubeconfig配置
 1. 登录rancher 找到对应的project 右上角 copy kubeConfig clipboard
 2. 文件命名规范，projectName.env.yml
+3. 设置insecure-skip-tls-verify: true;如下
+
+```yml
+apiVersion: v1
+kind: Config
+clusters:
+- name: "local"
+  cluster:
+    server: "https://114.55.130.93:31684/k8s/clusters/local"
+    insecure-skip-tls-verify: true
+```
 
 ### 添加vpn 配置 如果需要vpn的话, 支持多个vpn, 不需要vpn则不用配
 1. 添加格式如: config.help.json
