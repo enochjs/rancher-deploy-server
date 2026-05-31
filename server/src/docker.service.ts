@@ -61,6 +61,8 @@ export class DockerService {
       namespace,
     ].join(' ');
 
+    console.log('deployVpn: cmd', cmd);
+
     try {
       const { stdout } = await execAsync(cmd, {
         maxBuffer: 10 * 1024 * 1024, // 10MB

@@ -53,6 +53,7 @@ function main() {
       image: 'docker-easyconnect-cli', // 使用镜像，不 build
       container_name: serviceName,
       privileged: true,
+      restart: 'always',
       devices: ['/dev/net/tun'],
       cap_add: ['NET_ADMIN'],
       volumes: ['../configs/kubeconfig:/kubeconfig'],
@@ -74,6 +75,7 @@ function main() {
     image: 'docker-default-cli',
     container_name: 'docker-default-cli',
     privileged: true,
+    restart: 'always',
     devices: ['/dev/net/tun'],
     cap_add: ['NET_ADMIN'],
     volumes: ['../configs/kubeconfig:/kubeconfig'],
@@ -89,6 +91,7 @@ function main() {
   const deployApiConfig = {
     image: 'docker-deploy-server', // 使用镜像，不 build
     container_name: 'deploy_api',
+    restart: 'always',
     ports: ['9090:9090'], // 修改端口映射
     volumes: ['/var/run/docker.sock:/var/run/docker.sock'], // 挂载宿主机 Docker
     depends_on: vpnServiceNames,
@@ -102,7 +105,6 @@ function main() {
 
   const compose = {
     version: '3.9',
-    name: 'docker-deploy-server',
     services: services,
     networks: { net: { driver: 'bridge' } }
   };

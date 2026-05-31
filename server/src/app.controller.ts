@@ -24,6 +24,13 @@ export class AppController {
       });
     }
 
+    console.log('vpn_deploy: deployDto', deployDto);
+    console.log('vpn_deploy: platform', platform);
+    console.log('vpn_deploy: env', env);
+    console.log('vpn_deploy: key', key);
+    console.log('vpn_deploy: image', image);
+    console.log('vpn_deploy: namespace', namespace);
+
     const result = await this.dockerService.deployVpn(
       platform,
       env,
@@ -32,9 +39,13 @@ export class AppController {
       namespace,
     );
 
+    console.log('vpn_deploy: result', result);
+
     if (!result.success) {
+      console.log('vpn_deploy: result not success', result);
       // 容器不存在返回 400，部署失败返回 500
       if (result.error?.includes('not running')) {
+        console.log('vpn_deploy: result not success not running', result);
         throw new BadRequestException({
           error: result.error,
         });
