@@ -55,7 +55,7 @@ curl -X POST http://localhost:9090/deploy -H "Content-Type: application/json" -d
 }'
 
 kubectl -n "$DEPLOY_NAMESPACE" set image deployment/"$DEPLOY_KEY" \
-  "$DEPLOY_KEY"="$IMAGE_VERSION" --record
+  "*=$IMAGE_VERSION" --record
 
 ### 容器内排查 / 测试
 

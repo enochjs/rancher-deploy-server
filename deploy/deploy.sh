@@ -52,8 +52,10 @@ echo "镜像：$IMAGE_VERSION"
 echo "部署 namespace：$DEPLOY_NAMESPACE"
 
 # 更新镜像
+# kubectl -n "$DEPLOY_NAMESPACE" set image deployment/"$DEPLOY_KEY" \
+#   "$DEPLOY_KEY"="$IMAGE_VERSION" --record
 kubectl -n "$DEPLOY_NAMESPACE" set image deployment/"$DEPLOY_KEY" \
-  "$DEPLOY_KEY"="$IMAGE_VERSION" --record
+  "*=$IMAGE_VERSION" --record
 
 # 查看 rollout 过程
 kubectl -n "$DEPLOY_NAMESPACE" rollout status deployment/"$DEPLOY_KEY"
