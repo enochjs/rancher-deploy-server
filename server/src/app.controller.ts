@@ -18,7 +18,15 @@ export class AppController {
   async deploy(@Body() deployDto: DeployDto) {
     const { platform, env, key, image, namespace } = deployDto;
 
+    console.log('rancher:deploy deployDto', deployDto);
+    console.log('rancher:deploy platform', platform);
+    console.log('rancher:deploy env', env);
+    console.log('rancher:deploy key', key);
+    console.log('rancher:deploy image', image);
+    console.log('rancher:deploy namespace', namespace);
+
     if (!platform || !env || !key || !image) {
+      console.log('rancher:deploy missing required fields: platform, env, key, image');
       throw new BadRequestException({
         error: 'missing required fields: platform, env, key, image',
       });
@@ -39,22 +47,25 @@ export class AppController {
       namespace,
     );
 
-    console.log('vpn_deploy: result', result);
+    console.log('rancher:deploy result', result);
 
     if (!result.success) {
       console.log('vpn_deploy: result not success', result);
       // 容器不存在返回 400，部署失败返回 500
       if (result.error?.includes('not running')) {
-        console.log('vpn_deploy: result not success not running', result);
+        console.log('rancher:deploy error: not running', result.error);
         throw new BadRequestException({
           error: result.error,
         });
       }
+      console.log('rancher:deploy error: internal server error', result.error);
       throw new InternalServerErrorException({
         success: false,
         error: result.error,
       });
     }
+
+    console.log('rancher:deploy success', result.output);
 
     return {
       success: true,

@@ -27,8 +27,12 @@ fi
 if [ -z "$DEPLOY_NAMESPACE" ]; then
   if [ "$DEPLOY_ENV" = "prod" ]; then
     DEPLOY_NAMESPACE="web-cloud"
+  elif [ "$DEPLOY_ENV" = "pre" ]; then
+    DEPLOY_NAMESPACE="web-cloud-pre"
   elif [ "$DEPLOY_ENV" = "test" ]; then
     DEPLOY_NAMESPACE="web-cloud-test"
+  elif [ "$DEPLOY_ENV" = "dev" ]; then
+    DEPLOY_NAMESPACE="web-cloud-dev"
   fi
 fi
 

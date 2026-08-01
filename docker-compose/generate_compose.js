@@ -105,6 +105,8 @@ function main() {
 
   const compose = {
     version: '3.9',
+    // 有些版本不支持 name 字段，所以注释掉
+    // name: 'docker-deploy-server',
     services: services,
     networks: { net: { driver: 'bridge' } }
   };
